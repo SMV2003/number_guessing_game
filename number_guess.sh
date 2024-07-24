@@ -7,6 +7,8 @@ USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
 if [[ -z $USERID ]]
 then
     echo Welcome, $USERNAME! It looks like this is your first time here.
+    ADD_USER=$($PSQL "INSERT INTO users(username) VALUES ('$USERNAME')")
+    USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
 else
      GAMES="$($PSQL "SELECT COUNT(game_id) FROM games WHERE user_id=$USERID")"
      MIN_GUESSES="$($PSQL "SELECT MIN(guesses) FROM games WHERE user_id=$USERID")"
