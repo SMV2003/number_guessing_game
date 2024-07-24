@@ -56,3 +56,4 @@ do
 done
 
 echo You guessed it in $PGUESS tries. The secret number was $RNDNUM.
+INSERT_DATA=$($PSQL "INSERT INTO games(user_id,guesses) VALUES ($USERID,$PGUESS)")
